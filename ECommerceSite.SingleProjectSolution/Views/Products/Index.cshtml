@@ -1,0 +1,113 @@
+﻿@model IEnumerable<ECommerceSite.SingleProjectSolution.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="jumbotron">
+    @if (ViewBag.Featured != true)
+    {
+        <a asp-controller="Products" asp-action="Featured" class="btn btn-info btn-lg">View Featured Products &raquo;</a>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModelName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsFeatured)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModelNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductImage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductImageLarge)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductImageThumb)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CurrentPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitsInStock)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TimeStamp)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsFeatured)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelNumber)
+            </td>
+            <td>
+                <img src=@item.ProductImage alt=@item.ModelName />
+                <!--Html.DisplayFor(modelItem => item.ProductImage)-->
+            </td>
+            <td>
+                <img src=@item.ProductImageLarge alt=@item.ModelName />
+                <!--Html.DisplayFor(modelItem => item.ProductImageLarge)-->
+            </td>
+            <td>
+                <img src="@item.ProductImageThumb" alt="@item.ModelNumber" />
+                <!--Html.DisplayFor(modelItem => item.ProductImageThumb)-->
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeStamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Id)
+            </td>
+            <td>
+
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

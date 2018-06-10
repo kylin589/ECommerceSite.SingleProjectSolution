@@ -19,7 +19,10 @@ namespace ECommerceSite.SingleProjectSolution
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
+                 .UseStartup<Startup>()
+                 .UseKestrel()
+                 .UseDefaultServiceProvider(options =>
+                    options.ValidateScopes = false)
                 .Build();
     }
 }
